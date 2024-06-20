@@ -1,12 +1,13 @@
 package ecommerce.model;
 
 public abstract class Produto {
+	private static int ultimoId = 0;
 	private int id;
 	private String nome;
 	private double preco;
 	
 	public Produto(int id, String nome, double preco) {
-		this.id = id;
+		this.id = ++ultimoId;
 		this.nome = nome;
 		this.preco = preco;
 	}
@@ -38,6 +39,6 @@ public abstract class Produto {
 
 	@Override
 	public String toString() {
-	    return "Produto [id=" + id + ", nome=" + nome + ", preco=" + preco + "]";
+	    return "Produto id= " + id + ", nome = " + nome + ", preco = " + preco;
 	}
 }

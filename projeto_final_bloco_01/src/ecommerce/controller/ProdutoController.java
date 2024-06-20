@@ -13,7 +13,7 @@ public class ProdutoController implements ProdutoRepository {
     @Override
     public void adicionarProduto(Produto produto) {
         produtos.add(produto);
-        System.out.println("Produto adicionado com sucesso!");
+        System.out.println("Produto adicionado com sucesso! ID: " + produto.getId());
     }
 
     @Override
