@@ -2,9 +2,9 @@ package ecommerce.model;
 
 public abstract class Acai extends Produto {
     private int porcentagemAcai;
-    private String tamanho;
+    private int tamanho;
     
-    public Acai(int id, String nome, double preco, int porcentagemAcai, String tamanho) {
+    public Acai(int id, String nome, double preco, int porcentagemAcai, int tamanho) {
         super(id, nome, preco);
         this.porcentagemAcai = porcentagemAcai;
         this.tamanho = tamanho;
@@ -18,16 +18,16 @@ public abstract class Acai extends Produto {
         this.porcentagemAcai = porcentagemAcai;
     }
 
-    public String getTamanho() {
+    public int getTamanho() {
         return tamanho;
     }
 
-    public void setTamanho(String tamanho) {
+    public void setTamanho(int tamanho) {
         this.tamanho = tamanho;
     }
     
     @Override
     public String toString() {
-        return super.toString() + ", porcentagemAcai=" + porcentagemAcai + ", tamanho=" + tamanho;
+        return super.toString() + ", porcentagemAcai = " + porcentagemAcai + ", tamanho = " + tamanho;
     }
 }

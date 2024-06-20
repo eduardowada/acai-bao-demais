@@ -8,6 +8,7 @@ import ecommerce.model.AcaiTrufado;
 import ecommerce.model.Produto;
 import ecommerce.util.Cores;
 
+import java.util.*;
 import java.util.Scanner;
 
 public class Menu {
@@ -25,7 +26,7 @@ public class Menu {
          Tipo: 3*/
         
         /*
-        Exemplo de Criação 1:
+        Exemplo de Criação 2:
         ID: 2
         Nome: Copo Espanta Tristeza
         Preço: 20
@@ -36,7 +37,7 @@ public class Menu {
             System.out.println(Cores.TEXT_GREEN_BOLD_BRIGHT + Cores.ANSI_PURPLE_BACKGROUND
                     + "*****************************************************");
             System.out.println("                                                     ");
-            System.out.println("      CADASTRO DE E-COMMERCE: AÇAÍ BÃO DEMAIS!       ");
+            System.out.println("      CADASTRO DE E-COMMERCE: AÇAÍ" +Cores.TEXT_YELLOW_BOLD_BRIGHT + " BÃO" + Cores.TEXT_GREEN_BOLD_BRIGHT + " DEMAIS!       ");
             System.out.println("                                                     ");
             System.out.println("*****************************************************");
             System.out.println("                                                     ");
@@ -51,7 +52,15 @@ public class Menu {
             System.out.println("Entre com a opção desejada:                          ");
             System.out.println("                                                     " + Cores.TEXT_RESET);
 
-            opcao = sc.nextInt();
+            try {
+            	opcao = sc.nextInt();
+            	sc.nextLine();
+            } catch (InputMismatchException e) {
+            	System.out.println("Entrada Inválida. Por favor, digite uma opção válida.");
+            	sc.nextLine();
+            	continue;
+            }
+            
 
             if (opcao == 6) {
                 System.out.println(Cores.TEXT_WHITE_BOLD + "\nAçaí bão demais - NOSSA! BÃO DEMAIS SÔ");
@@ -89,24 +98,34 @@ public class Menu {
     }
 
     private static void cadastrarProduto(ProdutoController controller, Scanner sc) {
-        System.out.println("Digite o ID do produto: ");
-        int id = sc.nextInt();
-        sc.nextLine(); // Consumir a nova linha
-        System.out.println("Digite o nome do produto: ");
+        System.out.println("\nDigite o nome do produto: ");
         String nome = sc.nextLine();
-        System.out.println("Digite o preço do produto: ");
+        System.out.println("\nDigite o preço do produto: ");
         double preco = sc.nextDouble();
-        sc.nextLine(); // Consumir a nova linha
-        System.out.println("Digite o tamanho do produto: ");
-        String tamanho = sc.nextLine();
-        System.out.println("Escolha o tipo de açaí:");
-        System.out.println("1 - Açaí Puro");
-        System.out.println("2 - Açaí Trufado");
-        System.out.println("3 - Açaí Branco");
-        int tipo = sc.nextInt();
+        
+        int tipo;
+        do {
+        	
+            System.out.println("\nEscolha o tipo de açaí:");
+            System.out.println("1 - Açaí Puro");
+            System.out.println("2 - Açaí Trufado");
+            System.out.println("3 - Açaí Branco");
+            tipo = sc.nextInt();
+        } while (tipo < 1 || tipo > 3);
+        
+        int tamanho = 0;
+		do {
+        	System.out.println("\nDigite o tamanho do produto: ");
+        	System.out.println("1 - Pequeno");
+        	System.out.println("2 - Médio");
+        	System.out.println("3 - Grande");
+        	tamanho = sc.nextInt();
+        } while (tamanho < 1 || tamanho > 3);
+        
 
         Produto produto;
-        switch (tipo) {
+        int id = 0;
+		switch (tipo) {
             case 1:
                 produto = new AcaiPuro(id, nome, preco, tamanho);
                 break;
@@ -147,16 +166,24 @@ public class Menu {
         Produto produto = controller.buscarProdutoPorId(id);
         if (produto != null) {
             sc.nextLine(); // Consumir a nova linha
-            System.out.println("Digite o novo nome do produto: ");
+            System.out.println("\nDigite o novo nome do produto: ");
             String nome = sc.nextLine();
-            System.out.println("Digite o novo preço do produto: ");
+            System.out.println("\nDigite o novo preço do produto: ");
             double preco = sc.nextDouble();
             sc.nextLine(); // Consumir a nova linha
-            System.out.println("Digite o novo tamanho do produto: ");
-            String tamanho = sc.nextLine();
+            int tamanho = 0;
+			do {
+            	System.out.println("\nDigite o tamanho do produto: ");
+            	System.out.println("1 - Pequeno");
+            	System.out.println("2 - Médio");
+            	System.out.println("3 - Grande");
+            	tamanho = sc.nextInt();
+            } while (tamanho < 1 || tamanho > 3);
+            
+            
+            ((Acai) produto).setTamanho(tamanho);
             produto.setNome(nome);
             produto.setPreco(preco);
-            ((Acai) produto).setTamanho(tamanho); // Typecast para Acai
             controller.atualizarProduto(produto);
         } else {
             System.out.println("Produto não encontrado!");
