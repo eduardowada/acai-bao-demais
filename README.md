@@ -5,7 +5,7 @@
 <h2>Sobre o projeto</h2>
 <p>O sistema permite a criação, consulta, atualização e exclusão de produtos do e-commerce. Foi desenvolvido como parte do meu estudo no programa de bootcamp da Generation, onde busquei aplicar os conceitos aprendidos de maneira prática e eficiente. O menu foi desenvolvido de modo colorido e interativo.</p><br>
 <div align="center">
-  <img src="https://github.com/eduardowada/acai-bao-demais/assets/156962925/daf0a4e2-a1d4-4fbd-aa30-4182170dc72c" width="400px">
+  <img src="https://github.com/eduardowada/acai-bao-demais/assets/156962925/5ec587d6-892f-43b1-8b58-1a9327dd12a2" width="400px">
 </div>
 
 <h2>Funcionalidades</h2>
@@ -47,3 +47,10 @@ javac src/*.java
 
 <h2>Contribuição</h2>
 <p>Sinta-se à vontade para contribuir com este projeto. Você pode fazer isso através de pull requests ou abrindo issues para relatar bugs e sugerir melhorias.</p>
+
+<h2>Features</h2>
+<ol>
+  <li>Agora é possível selecionar o tamanho do açaí por opções através do Menu.</li>
+  <li>Adicionado try-cach no menu de opções.</li>
+  <li>Agora os IDs são gerados automaticamente.</li>
+</ol>
